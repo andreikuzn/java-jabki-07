@@ -1,9 +1,11 @@
 public class CreditAccount extends Account {
-
     private double creditLimit;
 
     public CreditAccount(String accountNumber, double balance, double creditLimit) {
         super(accountNumber, balance);
+        if (creditLimit < 0) {
+            throw new IllegalArgumentException("Кредитный лимит не может быть отрицательным");
+        }
         this.creditLimit = creditLimit;
     }
 
@@ -17,4 +19,11 @@ public class CreditAccount extends Account {
             return false;
         }
     }
+
+    @Override
+    public void displayInfo() {
+        System.out.printf("Счет: %s, Баланс: %.2f, Тип: CreditAccount, Кредитный лимит: %.2f%n",
+                getAccountNumber(), getBalance(), creditLimit);
+    }
+
 }

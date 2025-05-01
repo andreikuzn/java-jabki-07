@@ -68,27 +68,28 @@ public class Main {
 
         // Банковские счета
         Account[] accounts = new Account[3];
-        accounts[0] = new SavingsAccount("SA-001", 1500.0, 0.05);
-        accounts[1] = new CreditAccount("CA-001", 500.0, 1000.00);
+        accounts[0] = new SavingsAccount("SA-001", 1500.0, 0.03);
+        accounts[1] = new CreditAccount("CA-001", 500.0, 1000.0);
         accounts[2] = new SavingsAccount("SA-002", 800.0, 0.05);
 
+        System.out.println("Входящие данные по счетам:\n");
+
         for (Account acc : accounts) {
-            double depositAmount = 100.00;
-            System.out.printf("Пополнение счета %s на %s единиц\n", acc.getAccountNumber(), depositAmount);
-            acc.deposit(depositAmount);
+            acc.displayInfo();
         }
+
+        System.out.println("\nВыполнено начисление процентов на счета тип SavingsAccount Итог:\n");
 
         for (Account acc : accounts) {
             acc.applyInterest();
-            System.out.printf("Начисление процентов по счету %s, итоговый баланс %s единиц\n", acc.getAccountNumber(), acc.getBalance());
+            acc.displayInfo();
         }
 
+        System.out.println("\nВыполнено снятие с каждого счета 700 единиц. Итог:\n");
+
         for (Account acc : accounts) {
-            double withdrawAmount = 700.00;
-            System.out.printf("Снятие %s со счета %s\n", withdrawAmount, acc.getAccountNumber());
-            acc.withdraw(withdrawAmount);
+            acc.withdraw(700);
             acc.displayInfo();
-            System.out.println();
         }
 
         // Система доставки
@@ -109,17 +110,18 @@ public class Main {
         }
 
         // Игровые персонажи
-        Warrior warrior = new Warrior("Воин", 100);
+        Warrior warrior = new Warrior("Воин", 120);
         Mage mage = new Mage("Маг", 80);
 
         while (warrior.isAlive() && mage.isAlive()) {
-            mage.attack();
-            warrior.takeDamage(20);
-            warrior.block(20);
-            System.out.println();
             warrior.attack();
             mage.takeDamage(25);
             mage.heal(10);
+            System.out.println();
+            mage.attack();
+            warrior.takeDamage(20);
+            mage.attack();
+            warrior.block(20);
             System.out.println("\n------------------------");
         }
 

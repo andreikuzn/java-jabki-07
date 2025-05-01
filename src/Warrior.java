@@ -5,7 +5,7 @@ public class Warrior extends Character {
 
     @Override
     public void attack() {
-        System.out.println("Мечом в лицо!");
+        System.out.println("Воин атакует - Мечом в лицо!");
     }
 
     public void block(int damage) {
@@ -13,7 +13,7 @@ public class Warrior extends Character {
             throw new IllegalArgumentException("Урон для блока не может быть отрицательным.");
         }
         int reducedDamage = damage / 2;
+        System.out.printf("%s блокирует часть урона! Урон после блока: %s\n", getName(), reducedDamage);
         takeDamage(reducedDamage);
-        System.out.printf("%s блокирует часть урона! Урон после блока: %s", getName(), reducedDamage);
     }
 }

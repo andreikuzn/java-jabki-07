@@ -5,7 +5,7 @@ public class Mage extends Character {
 
     @Override
     public void attack() {
-        System.out.println("Огненный шар!");
+        System.out.println("Маг атакует - Огненный шар!");
     }
 
     public void heal(int amount) {
