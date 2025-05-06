@@ -67,30 +67,38 @@ public class Main {
          */
 
         // Банковские счета
-        Account[] accounts = new Account[3];
+        Account[] accounts = new Account[4];
         accounts[0] = new SavingsAccount("SA-001", 1500.0, 0.03);
         accounts[1] = new CreditAccount("CA-001", 500.0, 1000.0);
         accounts[2] = new SavingsAccount("SA-002", 800.0, 0.05);
+        accounts[3] = new CreditAccount("CA-002", 800.0, 500.0);
 
-        System.out.println("Входящие данные по счетам:\n");
-
+        System.out.println("=== Входящие данные по счетам ===");
         for (Account acc : accounts) {
             acc.displayInfo();
         }
 
-        System.out.println("\nВыполнено начисление процентов на счета тип SavingsAccount Итог:\n");
-
+        System.out.println("\n=== Начисление процентов на счета SavingsAccount ===");
         for (Account acc : accounts) {
             acc.applyInterest();
             acc.displayInfo();
         }
 
-        System.out.println("\nВыполнено снятие с каждого счета 700 единиц. Итог:\n");
-
+        System.out.println("\n=== Снятие 700 единиц со всех счетов ===");
         for (Account acc : accounts) {
             acc.withdraw(700);
             acc.displayInfo();
         }
+
+        System.out.println("\n-- Попытка снять больше, чем доступно с учётом кредитного лимита --");
+
+        System.out.println("=== Входящие данные по счету ===");
+        accounts[3].displayInfo();
+        System.out.println("=== Попытка снять 700 единиц ===");
+        accounts[3].withdraw(700.0);
+        accounts[3].displayInfo();
+
+        System.out.println();
 
         // Система доставки
         Vehicle truck = new Truck(120, 10000);
@@ -98,16 +106,20 @@ public class Main {
         DeliverySystem.startDelivery(truck, "Москва");
         DeliverySystem.startDelivery(drone, "Санкт-Петербург");
 
+        System.out.println();
+
         // Зоопарк
         List<Animal> animalEnclosure = List.of(
                 new Lion("Лев", 5),
                 new Parrot("Попугай", 2),
-                new Lion("Молодой лев", 3)
+                new Animal("Живность", 3)
         );
 
         for (Animal animalFromEnclosure : animalEnclosure) {
             animalFromEnclosure.makeSound();
         }
+
+        System.out.println();
 
         // Игровые персонажи
         Warrior warrior = new Warrior("Воин", 120);
@@ -116,15 +128,16 @@ public class Main {
         while (warrior.isAlive() && mage.isAlive()) {
             warrior.attack();
             mage.takeDamage(25);
-            mage.heal(10);
-            System.out.println();
+            if (mage.getHealth() < 40) {
+                mage.heal();
+            }
+            mage.attack();
+            warrior.block();
+            warrior.takeDamage(30);
             mage.attack();
             warrior.takeDamage(20);
-            mage.attack();
-            warrior.block(20);
             System.out.println("\n------------------------");
         }
-
         if (warrior.isAlive()) {
             System.out.println(warrior.getName() + " победил!");
         } else {

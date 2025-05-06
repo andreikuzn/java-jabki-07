@@ -8,11 +8,9 @@ public class Mage extends Character {
         System.out.println("Маг атакует - Огненный шар!");
     }
 
-    public void heal(int amount) {
-        if (amount < 0) {
-            throw new IllegalArgumentException("Количество лечащегося здоровья не может быть отрицательным.");
-        }
+    public void heal() {
+        int amount = 20;
         setHealth(getHealth() + amount);
-        System.out.printf("%s лечит себя на %s. Здоровье: %s", getName(), amount, getHealth());
+        System.out.printf("%s лечит себя на %s. Здоровье: %s\n", getName(), amount, getHealth());
     }
 }

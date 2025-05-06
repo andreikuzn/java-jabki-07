@@ -33,7 +33,6 @@ public class Account {
             balance -= amount;
             return true;
         } else {
-            System.out.println("Недостаточно средств или неверная сумма.");
             return false;
         }
     }

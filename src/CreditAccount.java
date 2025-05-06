@@ -11,8 +11,15 @@ public class CreditAccount extends Account {
 
     @Override
     public boolean withdraw(double amount) {
-        if (amount > 0 && getBalance() - amount >= -creditLimit) {
-            setBalance(getBalance() - amount);
+        if (super.withdraw(amount)) {
+            return true;
+        }
+        double totalAvailable = getBalance() + creditLimit;
+        if (amount > 0 && totalAvailable >= amount) {
+            double overdraftNeeded = amount - getBalance();
+            setBalance(0);
+            System.out.printf("Средства на счету %s закончились, использован овердрафт\n", getAccountNumber());
+            creditLimit -= overdraftNeeded;
             return true;
         } else {
             System.out.println("Кредитный лимит превышен");
