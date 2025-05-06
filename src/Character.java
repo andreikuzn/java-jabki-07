@@ -9,7 +9,7 @@ public class Character {
         if (health <= 0) {
             throw new IllegalArgumentException("Здоровье должно быть больше нуля.");
         }
-        this.name = name;
+        this.name = name.trim();
         this.health = health;
     }
 
@@ -22,7 +22,9 @@ public class Character {
             throw new IllegalArgumentException("Урон не может быть отрицательным.");
         }
         health -= damage;
-        if (health < 0) health = 0;
+        if (health < 0) {
+            health = 0;
+        }
         System.out.printf("%s получил урон: %s. Здоровье: %s\n", name, damage, health);
     }
 

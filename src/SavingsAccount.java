@@ -18,7 +18,6 @@ public class SavingsAccount extends Account {
         return super.withdraw(amount);
     }
 
-    @Override
     public void applyInterest() {
         double interest = getBalance() * interestRate;
         setBalance(getBalance() + interest);
@@ -29,6 +28,5 @@ public class SavingsAccount extends Account {
         System.out.printf("Счет: %s, Баланс: %.2f, Тип: SavingsAccount, Процент по вкладу: %.2f%%%n",
                 getAccountNumber(), getBalance(), interestRate * 100);
     }
-
 }
 

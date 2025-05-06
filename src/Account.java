@@ -24,7 +24,9 @@ public class Account {
     }
 
     public void deposit(double amount) {
-        if (amount <= 0) throw new IllegalArgumentException("Сумма должна быть положительной");
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Сумма должна быть положительной");
+        }
         balance += amount;
     }
 
@@ -41,9 +43,4 @@ public class Account {
         System.out.printf("Счет: %s, Баланс: %.2f, Тип: %s%n",
                 accountNumber, balance, this.getClass().getSimpleName());
     }
-
-    public void applyInterest() {
-
-    }
 }
-

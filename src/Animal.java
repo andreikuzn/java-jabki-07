@@ -3,13 +3,13 @@ public class Animal {
     private int age;
 
     public Animal(String name, int age) {
-        if (name == null || name.isBlank()) {
+        if (name == null || name.trim().isBlank()) {
             throw new IllegalArgumentException("Имя животного не может быть пустым");
         }
         if (age <= 0) {
             throw new IllegalArgumentException("Возраст должен быть больше нуля");
         }
-        this.name = name;
+        this.name = name.trim();
         this.age = age;
     }
 

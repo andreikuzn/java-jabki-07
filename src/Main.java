@@ -78,8 +78,12 @@ public class Main {
             acc.displayInfo();
         }
 
+        SavingsAccount[] savingsAccounts = new SavingsAccount[2];
+        savingsAccounts[0] = (SavingsAccount) accounts[0];
+        savingsAccounts[1] = (SavingsAccount) accounts[2];
+
         System.out.println("\n=== Начисление процентов на счета SavingsAccount ===");
-        for (Account acc : accounts) {
+        for (SavingsAccount acc : savingsAccounts) {
             acc.applyInterest();
             acc.displayInfo();
         }
